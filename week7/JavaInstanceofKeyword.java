@@ -1,5 +1,5 @@
 // Week 7 - Task 2
-// Question: Given objects, use Java instanceof to count how many objects belong to each class.
+// Question: Use Java instanceof to count Student, Rockstar and Hacker objects.
 // Platform: HackerRank
 // https://www.hackerrank.com/challenges/java-instanceof-keyword/problem
 import java.util.*;
@@ -9,14 +9,16 @@ class Hacker {}
 public class JavaInstanceofKeyword {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int a = 0, b = 0, c = 0;
+        int n = sc.nextInt(), student = 0, rockstar = 0, hacker = 0;
         for (int i = 0; i < n; i++) {
-            String s = sc.next();
-            if (s.equals("Student")) a++;
-            else if (s.equals("Rockstar")) b++;
-            else if (s.equals("Hacker")) c++;
+            String s = sc.next(); Object obj;
+            if (s.equals("Student")) obj = new Student();
+            else if (s.equals("Rockstar")) obj = new Rockstar();
+            else obj = new Hacker();
+            if (obj instanceof Student) student++;
+            if (obj instanceof Rockstar) rockstar++;
+            if (obj instanceof Hacker) hacker++;
         }
-        System.out.println(a + " " + b + " " + c);
+        System.out.println(student + " " + rockstar + " " + hacker);
     }
 }

@@ -2,5 +2,44 @@
 // Question: Palindrome Index
 // Platform: HackerRank
 // https://www.hackerrank.com/challenges/palindrome-index/problem
+
 import java.util.*;
-public class PalindromeIndex { static boolean ok(String s,int l,int r){while(l<r)if(s.charAt(l++)!=s.charAt(r--))return false;return true;}public static void main(String[]a){Scanner s=new Scanner(System.in);int t=s.nextInt();while(t-->0){String x=s.next();int l=0,r=x.length()-1;while(l<r&&x.charAt(l)==x.charAt(r)){l++;r--;}if(l>=r)System.out.println(-1);else System.out.println(ok(x,l+1,r)?l:(ok(x,l,r-1)?r:-1));}}}
+
+public class PalindromeIndex {
+    static boolean isPalindrome(String s, int left, int right) {
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t-- > 0) {
+            String s = sc.next();
+            int left = 0;
+            int right = s.length() - 1;
+
+            while (left < right && s.charAt(left) == s.charAt(right)) {
+                left++;
+                right--;
+            }
+
+            if (left >= right) {
+                System.out.println(-1);
+            } else if (isPalindrome(s, left + 1, right)) {
+                System.out.println(left);
+            } else if (isPalindrome(s, left, right - 1)) {
+                System.out.println(right);
+            } else {
+                System.out.println(-1);
+            }
+        }
+    }
+}
